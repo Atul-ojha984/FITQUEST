@@ -1,0 +1,60 @@
+/* Chat widget styles */
+.chat-widget {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #6b7280;
+    color: white;
+    padding: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.chat-widget:hover {
+    background-color: #555;
+}
+
+/* Chatbot styles */
+#chatPopup {
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%; /* Adjust the width as needed */
+    max-width: 500px; /* Ensure it doesn't exceed a certain width */
+}
+
+#chatPopup.hidden {
+    display: none;
+}
+
+#chatMessages {
+    height: 300px; /* Adjust the height as needed */
+    overflow-y: auto;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 10px;
+}
+
+#chatMessages > div {
+    padding: 10px 15px;
+    border-bottom: 1px solid #e5e7eb;
+    word-break: break-word;
+    margin-bottom: 10px; /* Add space between messages */
+}
+
+#chatMessages > div.user-message {
+    text-align: right;
+    background-color: #f3f4f6;
+    margin-left: auto;
+}
+
+#chatMessages > div.bot-message {
+    text-align: left;
+    background-color: #ffffff;
+}
+
+@media (min-width: 768px) {
+    #chatMessages {
+        height: 400px; /* Adjust the height for larger screens */
+    }
+}
