@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress Tracker | FitQuest</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-green-50 min-h-screen transition-colors duration-300">
+    <div class="max-w-5xl mx-auto py-10 px-4">
+        <h1 class="text-3xl font-bold text-center mb-6">📊 Your Fitness Progress</h1>
+
+        <!-- Chart Section -->
+        <div class="bg-white p-6 rounded-2xl shadow-md mb-10">
+            <h2 class="text-xl font-semibold mb-4">📈 Weight & Calories Over Time</h2>
+            <canvas id="progressChart"></canvas>
+        </div>
+
+        <!-- Add Progress Form -->
+        <div class="bg-white p-6 rounded-2xl shadow-md mb-10">
+            <h2 class="text-xl font-semibold mb-4">Add Progress Entry</h2>
+            <form id="progressForm" onsubmit="handleProgressSubmit(event)" class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <input type="date" id="date" required class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500">
+                    <input type="number" id="weight" placeholder="Weight (kg)" step="0.1" required class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500">
+                    <input type="number" id="workout_time" placeholder="Workout Time (min)" class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500">
+                    <input type="number" id="calories" placeholder="Calories Burned" class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500">
+                    <select id="mood" class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500">
+                        <option>Great</option>
+                        <option>Good</option>
+                        <option>Okay</option>
+                        <option>Tired</option>
+                        <option>Motivated</option>
+                    </select>
+                    <input type="text" id="notes" placeholder="Notes (optional)" class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500">
+                </div>
+                <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 font-semibold">Save Progress</button>
+            </form>
+        </div>
+
+        <!-- Table Section -->
+        <div class="bg-white p-6 rounded-2xl shadow-md">
+            <h2 class="text-xl font-semibold mb-4">📅 Entry Logs</h2>
+            <div class="overflow-x-auto">
+                <table class="min-w-full table-auto border text-center">
+                    <thead class="bg-gray-200">
+                        <tr>
+                            <th class="p-2">Date</th>
+                            <th class="p-2">Weight (kg)</th>
+                            <th class="p-2">Workout Time</th>
+                            <th class="p-2">Calories</th>
+                            <th class="p-2">Mood</th>
+                            <th class="p-2">Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody id="entriesTable">
+                        <tr>
+                            <td colspan="6" class="p-4 text-gray-600 text-center">No progress data yet. Let's get started! 💪</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Back Button -->
+        <div class="text-center mt-6">
+            <a href="index.html" class="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 inline-block">
+                ← Back to Home
+            </a>
+        </div>
+    </div>
+
+    <script>
+        let chart = null;
+        let allEntries = [];
+
+        async function loadProgress() {
+            try {
+                const response = await fetch('/api/progress-tracker');
+                const data = await response.json();
+
+                if (data.success) {
+                    allEntries = data.entries || [];
+                    displayEntries();
+                    updateChart();
+                }
+            } catch (error) {
+                console.error('Error loading progress:', error);
+            }
+        }
+
+        function displayEntries() {
+            const tbody = document.getElementById('entriesTable');
+            
+            if (allEntries.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" class="p-4 text-gray-600 text-center">No progress data yet. Let\'s get started! 💪</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = allEntries.map(entry => `
+                <tr class="border-t hover:bg-gray-100">
+                    <td class="p-2">${entry.date}</td>
+                    <td class="p-2">${entry.weight}</td>
+                    <td class="p-2">${entry.workout_time || '-'}</td>
+                    <td class="p-2">${entry.calories || '-'}</td>
+                    <td class="p-2">${entry.mood || '-'}</td>
+                    <td class="p-2">${entry.notes || '-'}</td>
+                </tr>
+            `).join('');
+        }
+
+        function updateChart() {
+            const ctx = document.getElementById('progressChart').getContext('2d');
+            const sortedEntries = [...allEntries].reverse();
+            const labels = sortedEntries.map(e => e.date);
+            const weights = sortedEntries.map(e => e.weight);
+            const calories = sortedEntries.map(e => e.calories || 0);
+
+            if (chart) chart.destroy();
+
+            chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'Weight (kg)',
+                            data: weights,
+                            borderColor: '#3b82f6',
+                            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                            tension: 0.4,
+                            yAxisID: 'y'
+                        },
+                        {
+                            label: 'Calories Burned',
+                            data: calories,
+                            borderColor: '#ef4444',
+                            backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                            tension: 0.4,
+                            yAxisID: 'y1'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    interaction: { mode: 'index', intersect: false },
+                    scales: {
+                        y: { type: 'linear', position: 'left', title: { display: true, text: 'Weight (kg)' } },
+                        y1: { type: 'linear', position: 'right', title: { display: true, text: 'Calories' }, grid: { drawOnChartArea: false } }
+                    }
+                }
+            });
+        }
+
+        async function handleProgressSubmit(event) {
+            event.preventDefault();
+
+            const progressData = {
+                date: document.getElementById('date').value,
+                weight: parseFloat(document.getElementById('weight').value),
+                workout_time: parseInt(document.getElementById('workout_time').value) || 0,
+                calories: parseInt(document.getElementById('calories').value) || 0,
+                mood: document.getElementById('mood').value,
+                notes: document.getElementById('notes').value
+            };
+
+            try {
+                const response = await fetch('/api/save-progress', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(progressData)
+                });
+
+                if (response.ok) {
+                    document.getElementById('progressForm').reset();
+                    loadProgress();
+                    alert('Progress saved successfully!');
+                }
+            } catch (error) {
+                alert('Error saving progress: ' + error.message);
+            }
+        }
+
+        // Load progress on page load
+        document.addEventListener('DOMContentLoaded', loadProgress);
+    </script>
+</body>
+</html>

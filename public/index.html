@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitQuest - Your Personalized Fitness Journey</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/chat.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body class="bg-gray-100 text-gray-900 relative">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md py-4 px-6 flex justify-between items-center sticky-nav" id="navbar">
+        <div class="flex items-center">
+            <img src="/images/logo.png" alt="FitQuest Logo" class="logo" onerror="this.style.display='none'">
+            <h1 class="text-2xl font-bold text-purple-700">FitQuest</h1>
+        </div>
+        <ul class="flex space-x-6">
+            <li><a href="#home" class="hover:text-purple-600">Home</a></li>
+            <li><a href="#plans" class="hover:text-purple-600">Plans</a></li>
+            <li><a href="#features" class="hover:text-purple-600">Features</a></li>
+            <li><a href="#testimonials" class="hover:text-purple-600">Testimonials</a></li>
+            <li><a href="#about" class="hover:text-purple-600">About</a></li>
+        </ul>
+        <div>
+            <a href="login.html" class="text-purple-600 hover:text-purple-800 mr-4">Login</a>
+            <a href="signup.html" class="bg-purple-600 text-white px-4 py-2 rounded-lg">Get Started</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div id="home" class="pt-16">
+        <div class="hero-gradient text-white bg-purple-600">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
+                <div class="lg:grid lg:grid-cols-12 lg:gap-8">
+                    <div class="lg:col-span-6">
+                        <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
+                            Your Fitness Journey <span class="block">Personalized</span>
+                        </h1>
+                        <p class="mt-6 text-xl">
+                            AI-powered fitness routines tailored to your goals, fitness level, and lifestyle. Start your transformation today.
+                        </p>
+                        <div class="mt-10 sm:flex sm:space-x-4">
+                            <a href="user-form.html" class="block w-full sm:w-auto rounded-md shadow px-5 py-3 bg-white text-base font-medium text-purple-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white text-center">
+                                Get Started
+                            </a>
+                            <a href="#features" class="mt-3 sm:mt-0 block w-full sm:w-auto rounded-md border border-white px-5 py-3 bg-transparent text-base font-medium text-white hover:bg-purple-500 text-center">
+                                Learn More
+                            </a>
+                        </div>
+                    </div>
+                    <div class="mt-12 lg:mt-0 lg:col-span-6 relative">
+                        <div class="rounded-lg shadow-xl overflow-hidden relative">
+                            <img src="/images/dashboard1.png" alt="Fitness App Dashboard" class="w-full" onerror="this.style.display='none'">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Motivational Quote -->
+    <section class="text-center py-12 quote-section">
+        <h3 class="text-2xl font-semibold quote-text">"The only bad workout is the one that didn't happen."</h3>
+        <p class="mt-2 text-gray-600">Start your journey today, no matter how small the step.</p>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-16 px-6">
+        <div class="max-w-6xl mx-auto text-center mb-12">
+            <h2 class="text-3xl font-bold">Everything you need to succeed</h2>
+            <p class="text-lg">Our platform combines AI technology with fitness expertise to create the perfect routine for you.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div class="bg-white p-6 rounded-lg shadow-lg text-center feature-card">
+                <div class="p-2 bg-purple-100 rounded-full inline-block mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Personalized Routines</h3>
+                <p class="text-gray-600">AI-generated workout plans based on your goals, fitness level, and available equipment.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-lg text-center feature-card">
+                <div class="p-2 bg-purple-100 rounded-full inline-block mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14m-6 0a2 2 0 002 2h2a2 2 0 002-2z" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Progress Tracking</h3>
+                <p class="text-gray-600">Monitor your improvements with detailed analytics and milestone achievements.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-lg text-center feature-card">
+                <div class="p-2 bg-purple-100 rounded-full inline-block mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Smart Scheduling</h3>
+                <p class="text-gray-600">Plan your workouts to fit your busy life with intelligent scheduling recommendations.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-lg text-center feature-card">
+                <div class="p-2 bg-purple-100 rounded-full inline-block mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">AI Personal Trainer</h3>
+                <p class="text-gray-600">Get real-time feedback and form guidance through our intelligent AI coach.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-lg text-center feature-card">
+                <div class="p-2 bg-purple-100 rounded-full inline-block mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Community Support</h3>
+                <p class="text-gray-600">Connect with like-minded fitness enthusiasts to stay motivated and share tips.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-lg text-center feature-card">
+                <div class="p-2 bg-purple-100 rounded-full inline-block mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Nutritional Guidance</h3>
+                <p class="text-gray-600">Personalized meal plans and nutrition advice to complement your fitness routine.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Plans Section -->
+    <section id="plans" class="py-16 px-6 bg-purple-100">
+        <h2 class="text-3xl font-bold text-center mb-8">Choose the plan that fits your needs</h2>
+        <p class="text-center mb-8">From beginners to advanced athletes, we have the perfect plan for everyone.</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div class="bg-white p-6 rounded-lg shadow-lg flex flex-col justify-between">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Basic</h3>
+                    <p class="text-4xl font-bold mb-4">₹799/month</p>
+                    <p class="mb-4">Perfect for fitness beginners looking for guidance.</p>
+                    <ul class="text-left space-y-2">
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span>Custom workout plans</li>
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span>Basic progress tracking</li>
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span>Email support</li>
+                        <li class="flex items-center"><span class="text-red-500 mr-2">✗</span>Advanced analytics</li>
+                    </ul>
+                </div>
+                <button class="bg-purple-600 text-white px-6 py-3 rounded-lg mt-4">Get Started</button>
+            </div>
+
+            <div class="bg-purple-600 text-white p-6 rounded-lg shadow-lg flex flex-col justify-between">
+                <div>
+                    <div class="bg-yellow-300 text-purple-600 font-bold px-3 py-1 inline-block rounded-full mb-4">Best Value</div>
+                    <h3 class="text-2xl font-bold mb-4">Premium</h3>
+                    <p class="text-4xl font-bold mb-4">₹1,599/month</p>
+                    <p class="mb-4">For dedicated fitness enthusiasts seeking results.</p>
+                    <ul class="text-left space-y-2">
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span>Advanced workout plans</li>
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span>Detailed progress analytics</li>
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span>Nutrition planning</li>
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span>Priority support</li>
+                    </ul>
+                </div>
+                <button class="bg-white text-purple-600 px-6 py-3 rounded-lg mt-4">Get Started</button>
+            </div>
+
+            <div class="bg-gray-900 text-white p-6 rounded-lg shadow-lg flex flex-col justify-between">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Elite</h3>
+                    <p class="text-4xl font-bold mb-4">₹3,199/month</p>
+                    <p class="mb-4">For serious athletes and professionals.</p>
+                    <ul class="text-left space-y-2">
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span>Custom training programs</li>
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span>Advanced performance analysis</li>
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span>1-on-1 coaching sessions</li>
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span>24/7 personal support</li>
+                    </ul>
+                </div>
+                <button class="bg-white text-purple-600 px-6 py-3 rounded-lg mt-4">Get Started</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-16 px-6 bg-purple-100">
+        <div class="max-w-6xl mx-auto text-center mb-12">
+            <h2 class="text-3xl font-bold">What our members are saying</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div class="bg-white p-6 rounded-lg shadow-lg text-center testimonial-card">
+                <div class="flex items-center mb-4">
+                    <span class="text-green-500 mr-2">✅ User</span>
+                    <h3 class="text-xl font-semibold">Sarah Johnson</h3>
+                </div>
+                <p class="text-gray-600 italic mb-4">"FitQuest completely transformed my approach to fitness. The personalized workouts and nutrition plans were exactly what I needed."</p>
+                <div class="flex justify-center">
+                    <span class="text-red-500">★★★★★</span>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-lg text-center testimonial-card">
+                <div class="flex items-center mb-4">
+                    <span class="text-green-500 mr-2">✅ User</span>
+                    <h3 class="text-xl font-semibold">Michael Chen</h3>
+                </div>
+                <p class="text-gray-600 italic mb-4">"As someone who's been running for years, FitQuest's training plans helped me shave 15 minutes off my marathon time."</p>
+                <div class="flex justify-center">
+                    <span class="text-red-500">★★★★★</span>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-lg text-center testimonial-card">
+                <div class="flex items-center mb-4">
+                    <span class="text-green-500 mr-2">✅ User</span>
+                    <h3 class="text-xl font-semibold">Emily Rodriguez</h3>
+                </div>
+                <p class="text-gray-600 italic mb-4">"With three kids and a full-time job, FitQuest's flexible scheduling fit perfectly into my busy life."</p>
+                <div class="flex justify-center">
+                    <span class="text-red-500">★★★★★</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 px-6 bg-purple-100 text-center">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold mb-4 text-purple-700">About FitQuest</h2>
+            <p class="text-lg mb-8 text-gray-700">
+                At FitQuest, we believe that achieving your fitness goals should be an empowering and personalized journey. Our mission is to provide you with the tools, support, and motivation you need to transform your life through fitness. Whether you're aiming to lose weight, build muscle, or simply maintain a healthy lifestyle, FitQuest is here to guide you.
+            </p>
+            <a href="signup.html" class="bg-purple-600 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-purple-700">Sign Up Today</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">FitQuest</h3>
+                    <p>Your AI-powered fitness companion, helping you achieve your health and fitness goals.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html" class="text-purple-300 hover:text-purple-400">Home</a></li>
+                        <li><a href="index.html#plans" class="text-purple-300 hover:text-purple-400">Plans</a></li>
+                        <li><a href="index.html#features" class="text-purple-300 hover:text-purple-400">Features</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Resources</h3>
+                    <ul>
+                        <li><a href="#" class="text-purple-300 hover:text-purple-400">Blog</a></li>
+                        <li><a href="#" class="text-purple-300 hover:text-purple-400">Exercise Library</a></li>
+                        <li><a href="#" class="text-purple-300 hover:text-purple-400">Nutrition Guide</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact</h3>
+                    <p>Email: <a href="mailto:support@fitquest.com" class="text-purple-300 hover:text-purple-400">support@fitquest.com</a></p>
+                    <p>Phone: <a href="tel:+919999999999" class="text-purple-300 hover:text-purple-400">+91 9999999999</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+    <script>
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(event) {
+                event.preventDefault();
+                const targetElement = document.querySelector(this.getAttribute('href'));
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        window.onscroll = function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        };
+    </script>
+</body>
+</html>

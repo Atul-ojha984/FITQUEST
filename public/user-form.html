@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FitQuest | Create Your Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-indigo-50 to-purple-50 min-h-screen p-8">
+    <div class="max-w-2xl mx-auto bg-white p-8 rounded-2xl shadow-lg">
+        <div class="text-center mb-8">
+            <h2 class="text-4xl font-bold text-indigo-600 mb-2">Create Your Fitness Profile</h2>
+            <p class="text-gray-600">Help us craft your perfect workout routine</p>
+        </div>
+
+        <form id="userForm" onsubmit="handleFormSubmit(event)" class="space-y-6">
+            <div class="space-y-2">
+                <label class="block text-sm font-medium text-gray-700">Name <span class="text-red-500">*</span></label>
+                <input name="name" type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500" placeholder="John Doe">
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="space-y-2">
+                    <label class="block text-sm font-medium text-gray-700">Age <span class="text-red-500">*</span></label>
+                    <input name="age" type="number" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-200" placeholder="25">
+                </div>
+                <div class="space-y-2">
+                    <label class="block text-sm font-medium text-gray-700">Gender <span class="text-red-500">*</span></label>
+                    <select name="gender" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-200">
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="space-y-2">
+                    <label class="block text-sm font-medium text-gray-700">Weight (kg) <span class="text-red-500">*</span></label>
+                    <input name="weight" type="number" step="0.1" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-200" placeholder="70">
+                </div>
+                <div class="space-y-2">
+                    <label class="block text-sm font-medium text-gray-700">Height (cm) <span class="text-red-500">*</span></label>
+                    <input name="height" type="number" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-200" placeholder="175">
+                </div>
+            </div>
+
+            <div class="space-y-2">
+                <label class="block text-sm font-medium text-gray-700">Fitness Goal <span class="text-red-500">*</span></label>
+                <select name="goal" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-200">
+                    <option>Weight Loss</option>
+                    <option>Muscle Gain</option>
+                    <option>Maintenance</option>
+                    <option>Strength Building</option>
+                    <option>Endurance</option>
+                </select>
+            </div>
+
+            <div class="space-y-2">
+                <label class="block text-sm font-medium text-gray-700">Workout Location <span class="text-red-500">*</span></label>
+                <select name="workout_place" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-200">
+                    <option>Home</option>
+                    <option>Gym</option>
+                    <option>Outdoor</option>
+                    <option>Mix of all</option>
+                </select>
+            </div>
+
+            <div class="space-y-2">
+                <label class="block text-sm font-medium text-gray-700">Diet Type <span class="text-red-500">*</span></label>
+                <select name="diet" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-200">
+                    <option value="veg">Vegetarian</option>
+                    <option value="vegan">Vegan</option>
+                    <option value="keto">Keto</option>
+                    <option value="gluten_free">Gluten Free</option>
+                    <option>Non-Vegetarian</option>
+                </select>
+            </div>
+
+            <div class="space-y-2">
+                <label class="block text-sm font-medium text-gray-700">Any Allergies?</label>
+                <input name="allergies" type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-200" placeholder="e.g., Dairy, Nuts, Soy">
+            </div>
+
+            <button type="submit" class="w-full bg-indigo-600 text-white font-semibold py-3 rounded-lg hover:bg-indigo-700">
+                Generate My Routine
+            </button>
+        </form>
+
+        <p class="mt-4 text-center"><a href="index.html" class="text-indigo-600 hover:text-indigo-800 font-semibold">Back to Home</a></p>
+    </div>
+
+    <script>
+        async function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(document.getElementById('userForm'));
+            const data = Object.fromEntries(formData);
+
+            try {
+                const response = await fetch('/api/generate-routine', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (response.ok && result.success) {
+                    sessionStorage.setItem('routineData', JSON.stringify(result));
+                    window.location.href = 'routine-result.html';
+                } else {
+                    alert('Error generating routine: ' + (result.error || 'Unknown error'));
+                }
+            } catch (error) {
+                alert('Network error: ' + error.message);
+            }
+        }
+    </script>
+</body>
+</html>

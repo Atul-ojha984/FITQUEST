@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - FitQuest</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="bg-gray-100 text-gray-900">
+    <div class="flex justify-center items-center min-h-screen py-8">
+        <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+            <h2 class="text-2xl font-bold mb-6 text-center">Create Your FitQuest Account</h2>
+            <div id="errorMessage" class="mb-4 text-red-600 text-center hidden"></div>
+            <div id="successMessage" class="mb-4 text-green-600 text-center hidden"></div>
+            
+            <form id="signupForm" onsubmit="handleSignup(event)">
+                <div class="mb-4">
+                    <label for="name" class="block text-gray-700 font-semibold mb-2">Full Name</label>
+                    <input type="text" id="name" name="name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600" required>
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-gray-700 font-semibold mb-2">Email</label>
+                    <input type="email" id="email" name="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600" required>
+                </div>
+                <div class="mb-6">
+                    <label for="password" class="block text-gray-700 font-semibold mb-2">Password</label>
+                    <input type="password" id="password" name="password" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600" required>
+                </div>
+                <button type="submit" class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 font-semibold">Sign Up</button>
+            </form>
+            
+            <p class="mt-4 text-center text-gray-600">Already have an account? <a href="login.html" class="text-purple-600 font-semibold hover:text-purple-800">Login</a></p>
+            <p class="mt-2 text-center"><a href="index.html" class="text-purple-600 hover:text-purple-800">Back to Home</a></p>
+        </div>
+    </div>
+
+    <script>
+        async function handleSignup(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const errorDiv = document.getElementById('errorMessage');
+            const successDiv = document.getElementById('successMessage');
+
+            try {
+                const response = await fetch('/api/signup', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.success) {
+                    successDiv.textContent = 'Account created successfully! Redirecting to login...';
+                    successDiv.classList.remove('hidden');
+                    errorDiv.classList.add('hidden');
+                    setTimeout(() => window.location.href = 'login.html', 2000);
+                } else {
+                    errorDiv.textContent = data.error || 'Signup failed';
+                    errorDiv.classList.remove('hidden');
+                    successDiv.classList.add('hidden');
+                }
+            } catch (error) {
+                errorDiv.textContent = 'Network error: ' + error.message;
+                errorDiv.classList.remove('hidden');
+                successDiv.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>

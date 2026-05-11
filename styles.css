@@ -1,0 +1,276 @@
+/* Add any global styles here */
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+/* Example of a custom style */
+.custom-button {
+    background-color: #6b7280;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.custom-button:hover {
+    background-color: #555;
+}
+
+/* Footer styles */
+footer {
+    background-color: #1f2937;
+    color: #e5e7eb;
+}
+
+footer h3 {
+    color: #e5e7eb;
+    font-weight: bold;
+}
+
+footer a {
+    color: #d1d5db;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #c0c7d1;
+}
+
+footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Motivational Quote Section Styling */
+.quote-section {
+    font-family: 'Playfair Display', serif;
+}
+
+.quote-text {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+}
+/* Sticky Navbar Styling */
+.sticky-nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Ensure it stays above other content */
+    background-color: white; /* Background color for the navbar */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Adds a shadow for better separation */
+}
+
+/* Testimonials Section Styling */
+#testimonials {
+    background-color: #f9f9f9; /* Light background color */
+    color: #333; /* Dark text color */
+}
+
+#testimonials h2 {
+    font-family: 'Playfair Display', serif; /* Elegant serif font */
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.testimonial-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+}
+
+.testimonial-card h3 {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.25rem;
+    color: #333;
+}
+
+.testimonial-card p {
+    font-family: 'Arial', sans-serif;
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.testimonial-card .text-red-500 {
+    font-size: 1.5rem;
+    color: #f59e0b;
+}
+
+/* Feature Card Styling */
+.feature-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-card h3 {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.25rem;
+    color: #333;
+}
+
+.feature-card p {
+    font-family: 'Arial', sans-serif;
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.feature-card img {
+    height: 48px;
+    width: 48px;
+    color: #6b7280; /* Adjust icon color as needed */
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Sticky Navbar Styling */
+.sticky-nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Ensure it stays above other content */
+    transition: background-color 0.3s ease;
+}
+
+/* Default Navbar Background */
+.sticky-nav {
+    background-color: white;
+}
+
+/* Transparent Navbar on Scroll */
+.sticky-nav.scrolled {
+    background-color: rgba(255, 255, 255, 0.664); /* Semi-transparent background */
+    backdrop-filter: blur(40px); /* Optional: Adds a blur effect */
+}
+
+
+/* Ensure the container is relatively positioned */
+.relative {
+    position: relative;
+}
+
+/* Style the overlay images */
+.absolute {
+    position: absolute;
+}
+
+/* Adjust size and position as needed */
+.w-16 {
+    width: 4rem; /* Adjust the width as needed */
+}
+
+.h-16 {
+    height: 4rem; /* Adjust the height as needed */
+}
+
+.object-contain {
+    object-fit: contain;
+}
+
+/* Transform to position outside the image */
+.transform {
+    transform: translate(50%, 50%);
+}
+/* Ensure the login button has a higher z-index */
+.relative {
+    position: relative;
+    z-index: 20; /* Adjust the z-index value as needed */
+}
+
+/* About Section Styling */
+#about {
+    background-color: #f3e8ff; /* Light purple background */
+    color: #3f3a66; /* Text color */
+    padding: 4rem 1.5rem; /* Adjust padding as needed */
+}
+
+#about h2 {
+    font-size: 2rem; /* Adjust font size as needed */
+    margin-bottom: 1rem;
+    color: #6b46c1; /* Purple text color */
+}
+
+#about p {
+    font-size: 1.125rem; /* Adjust font size as needed */
+    margin-bottom: 1.5rem;
+    color: #555; /* Gray text color */
+}
+
+#about a {
+    display: inline-block;
+    background-color: #6b46c1; /* Purple button background */
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+
+#about a:hover {
+    background-color: #5a3f98; /* Darker purple on hover */
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #1f2937;
+    color: #cbd5e0;
+}
+
+body.dark-mode nav {
+    background-color: #334155;
+    color: #cbd5e0;
+}
+
+body.dark-mode nav a {
+    color: #e2e8f0;
+}
+
+body.dark-mode nav a:hover {
+    color: #ffffff;
+}
+
+body.dark-mode .logo {
+    filter: invert(1);
+}
+
+body.dark-mode footer {
+    background-color: #1f2937;
+    color: #cbd5e0;
+}
+
+body.dark-mode footer a {
+    color: #e2e8f0;
+}
+
+body.dark-mode footer a:hover {
+    color: #ffffff;
+}
+
+body.dark-mode .feature-card {
+    background-color: #334155;
+    color: #cbd5e0;
+}
+
+body.dark-mode .feature-card a {
+    color: #e2e8f0;
+}
+
+body.dark-mode .feature-card a:hover {
+    color: #ffffff;
+}

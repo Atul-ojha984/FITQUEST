@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Routine - FitQuest</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-green-50 min-h-screen p-8">
+    <div class="max-w-4xl mx-auto space-y-8">
+        <!-- Header Section -->
+        <div class="bg-white rounded-2xl shadow-lg p-8 text-center">
+            <h1 class="text-4xl font-bold text-gray-800 mb-2" id="welcomeMsg">Hello! 👋</h1>
+            <p class="text-gray-600">Your personalized fitness plan based on your profile</p>
+        </div>
+
+        <!-- BMI Section -->
+        <div class="bg-white rounded-2xl shadow-lg p-8">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-xl font-bold text-gray-800">Body Mass Index (BMI)</h3>
+                <span id="bmiCategory" class="px-4 py-1 rounded-full bg-green-100 text-green-800 text-sm">--</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="text-4xl font-bold text-gray-800" id="bmiValue">--</div>
+                <div class="flex-1 bg-gray-200 rounded-full h-3">
+                    <div id="bmiBar" class="bg-green-500 h-3 rounded-full" style="width: 50%"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Nutrition Section -->
+        <div class="bg-white rounded-2xl shadow-lg p-8">
+            <h3 class="text-xl font-bold text-gray-800 mb-6">📊 Daily Nutrition Goals</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="bg-blue-50 p-4 rounded-lg text-center">
+                    <p class="text-gray-600 text-sm">Calories</p>
+                    <p class="text-2xl font-bold text-blue-600" id="caloriesGoal">--</p>
+                </div>
+                <div class="bg-red-50 p-4 rounded-lg text-center">
+                    <p class="text-gray-600 text-sm">Protein (g)</p>
+                    <p class="text-2xl font-bold text-red-600" id="proteinGoal">--</p>
+                </div>
+                <div class="bg-yellow-50 p-4 rounded-lg text-center">
+                    <p class="text-gray-600 text-sm">Carbs (g)</p>
+                    <p class="text-2xl font-bold text-yellow-600" id="carbsGoal">--</p>
+                </div>
+                <div class="bg-green-50 p-4 rounded-lg text-center">
+                    <p class="text-gray-600 text-sm">Fats (g)</p>
+                    <p class="text-2xl font-bold text-green-600" id="fatsGoal">--</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Workout Plan -->
+        <div class="bg-white rounded-2xl shadow-lg p-8">
+            <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                <span class="text-2xl mr-2">💪</span>
+                Recommended Workouts
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="workoutPlan">
+                <div class="flex items-center p-4 bg-gray-50 rounded-lg">
+                    <span class="text-2xl mr-3">🏃</span>
+                    <span>Loading...</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Meal Plan -->
+        <div class="bg-white rounded-2xl shadow-lg p-8">
+            <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                <span class="text-2xl mr-2">🍽️</span>
+                Sample Meal Plan
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="mealPlan">
+                <div class="flex items-center p-4 bg-gray-50 rounded-lg">
+                    <span>Loading...</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Back Button -->
+        <div class="text-center">
+            <a href="user-form.html" class="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 inline-block">
+                ← Create Another Routine
+            </a>
+            <a href="index.html" class="px-6 py-3 bg-gray-500 text-white rounded-lg hover:bg-gray-600 inline-block ml-2">
+                Back to Home
+            </a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const routineData = sessionStorage.getItem('routineData');
+            
+            if (!routineData) {
+                document.body.innerHTML = '<div class="text-center p-8"><h1 class="text-2xl">No routine data found. <a href="user-form.html">Create your profile</a></h1></div>';
+                return;
+            }
+
+            const data = JSON.parse(routineData);
+            
+            // Update welcome message
+            document.getElementById('welcomeMsg').textContent = `Hello! 👋`;
+            
+            // Update BMI
+            const bmi = data.bmi.value;
+            document.getElementById('bmiValue').textContent = bmi;
+            document.getElementById('bmiCategory').textContent = data.bmi.category;
+            document.getElementById('bmiCategory').className = `px-4 py-1 rounded-full text-white text-sm bg-${data.bmi.color}-500`;
+            
+            // Update nutrition goals
+            document.getElementById('caloriesGoal').textContent = data.nutrition.calories;
+            document.getElementById('proteinGoal').textContent = data.nutrition.protein;
+            document.getElementById('carbsGoal').textContent = data.nutrition.carbs;
+            document.getElementById('fatsGoal').textContent = data.nutrition.fats;
+            
+            // Display workouts
+            const workoutDiv = document.getElementById('workoutPlan');
+            workoutDiv.innerHTML = data.workout.map((w, i) => `
+                <div class="flex items-center p-4 bg-gray-50 rounded-lg">
+                    <input type="checkbox" class="mr-3">
+                    <span>${w}</span>
+                </div>
+            `).join('');
+            
+            // Display meals
+            const mealDiv = document.getElementById('mealPlan');
+            mealDiv.innerHTML = data.meals.map((m, i) => `
+                <div class="flex items-center p-4 bg-gray-50 rounded-lg">
+                    <span class="text-2xl mr-3">🍲</span>
+                    <span>${m}</span>
+                </div>
+            `).join('');
+        });
+    </script>
+</body>
+</html>

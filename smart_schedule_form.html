@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Scheduling | FitQuest</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body class="bg-gradient-to-br from-indigo-50 to-purple-50 min-h-screen p-8">
+  <div class="max-w-4xl mx-auto py-10 px-6">
+    <h1 class="text-4xl font-bold text-center text-indigo-600 mb-6">
+      Smart Workout <span class="text-purple-600">Scheduler</span>
+    </h1>
+
+    <div class="bg-white shadow-lg rounded-xl p-6 mb-6">
+      <form action="smart_schedule.php" method="POST" class="space-y-4">
+
+        <!-- Name Section -->
+        <div class="space-y-2">
+          <label class="block text-sm font-medium text-gray-700">Name <span class="text-red-500">*</span></label>
+          <div class="relative">
+            <input name="name" type="text" required
+                   class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 transition-all"
+                   placeholder="John Doe">
+            <i class="fa fa-user absolute left-3 top-3.5 text-gray-400"></i>
+          </div>
+        </div>
+
+        <!-- Days Section -->
+        <div class="space-y-2">
+          <label for="day" class="block text-sm font-medium text-gray-700">
+            Preferred Workout Day <span class="text-red-500">*</span>
+          </label>
+          <div class="relative">
+            <select name="day" id="day" required
+                    class="appearance-none w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-gray-700">
+              <option value="">Select a day</option>
+              <option value="Monday">Monday</option>
+              <option value="Tuesday">Tuesday</option>
+              <option value="Wednesday">Wednesday</option>
+              <option value="Thursday">Thursday</option>
+              <option value="Friday">Friday</option>
+              <option value="Saturday">Saturday</option>
+              <option value="Sunday">Sunday</option>
+            </select>
+            <i class="fa fa-calendar-alt absolute left-3 top-3.5 text-gray-400"></i>
+            <i class="fa fa-chevron-down absolute right-3 top-3.5 text-gray-400 pointer-events-none"></i>
+          </div>
+          <p class="text-xs text-gray-500">Select only one day for your workout.</p>
+        </div>
+
+        <!-- Available Time Section -->
+        <div class="space-y-2">
+          <label for="available_time" class="block text-sm font-medium text-gray-700">
+            Available Time per Day (in minutes) <span class="text-red-500">*</span>
+          </label>
+          <div class="relative">
+            <input type="number" name="available_time" id="available_time" min="10" required
+                   placeholder="e.g. 30"
+                   class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg bg-white text-gray-700 
+                          focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 transition-all">
+            <i class="fa fa-clock absolute left-3 top-3.5 text-gray-400 pointer-events-none"></i>
+          </div>
+        </div>
+
+        <!-- Fitness Goal Section -->
+        <div class="space-y-2">
+          <label for="goal" class="block text-sm font-medium text-gray-700">
+            Fitness Goal <span class="text-red-500">*</span>
+          </label>
+          <div class="relative">
+            <select name="goal" id="goal" required
+                    class="appearance-none w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg bg-white text-gray-700 
+                           focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 transition-all">
+              <option value="" disabled selected>Select your goal</option>
+              <option value="weight_loss">Weight Loss</option>
+              <option value="muscle_gain">Muscle Gain</option>
+              <option value="endurance">Endurance</option>
+              <option value="flexibility">Flexibility</option>
+            </select>
+            <i class="fa fa-dumbbell absolute left-3 top-3.5 text-gray-400 pointer-events-none"></i>
+            <i class="fa fa-chevron-down absolute right-3 top-3.5 text-gray-400 pointer-events-none"></i>
+          </div>
+        </div>
+
+        <!-- Diet Preference Section -->
+        <div class="space-y-2">
+          <label for="diet" class="block text-sm font-medium text-gray-700">
+            Diet Preference <span class="text-red-500">*</span>
+          </label>
+          <div class="relative">
+            <select name="diet" id="diet" required
+                    class="appearance-none w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg bg-white text-gray-700 
+                           focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 transition-all">
+              <option value="" disabled selected>Select your diet</option>
+              <option value="vegetarian">Vegetarian</option>
+              <option value="non_vegetarian">Non-Vegetarian</option>
+              <option value="vegan">Vegan</option>
+              <option value="keto">Keto</option>
+              <option value="paleo">Paleo</option>
+            </select>
+            <i class="fa fa-utensils absolute left-3 top-3.5 text-gray-400 pointer-events-none"></i>
+            <i class="fa fa-chevron-down absolute right-3 top-3.5 text-gray-400 pointer-events-none"></i>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="w-full bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white py-2 px-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+          Generate Smart Schedule
+        </button>
+      </form>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="text-center text-gray-500 text-sm">
+      Powered by FitQuest's AI Scheduler · Plan smart, train smarter
+    </div>
+  </div>
+</body>
+</html>
